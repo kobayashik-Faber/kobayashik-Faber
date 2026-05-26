@@ -2,7 +2,7 @@
   <img src="./assets/banner.svg" alt="Kota Kobayashi — Faber Company">
 </p>
 
-## 📝 最新ブログ記事
+## Recent posts
 
 <!-- BLOG:START -->
 - 2026-04-02　[Cloudflare の新 CMS「EmDash」をローカルで動かしてみた](https://fabercompany-dev.hatenablog.com/entry/2026/04/02/211412)
