@@ -1,10 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 320" role="img" aria-label="Kota Kobayashi — Faber Company">
+  <defs>
+    <linearGradient id="nameGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e3ff75"/>
+      <stop offset="100%" stop-color="#8aaf00"/>
+    </linearGradient>
+  </defs>
   <rect width="1280" height="320" fill="#ffffff"/>
   <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif">
-    <text x="72" y="128" font-size="64" font-weight="900" fill="#000000" letter-spacing="-1">Kota Kobayashi</text>
-    <text x="72" y="172" font-size="22" font-weight="500" fill="#000000">Technology Strategy Team · Faber Company</text>
-    <rect x="72" y="190" width="72" height="6" fill="#f00012"/>
-    <text x="72" y="260" font-size="14" font-weight="400" fill="#555555">Updated: 2026-05-25 18:51 JST</text>
+    <g font-size="72" font-weight="900" stroke-linejoin="round" stroke-linecap="round">
+      <text x="72" y="132" fill="#c5ff21" stroke="#c5ff21" stroke-width="24">Kota Kobayashi</text>
+      <text x="72" y="132" fill="#000000" stroke="#000000" stroke-width="14">Kota Kobayashi</text>
+      <text x="72" y="132" fill="#ffffff" stroke="#ffffff" stroke-width="6">Kota Kobayashi</text>
+      <text x="72" y="132" fill="url(#nameGrad)">Kota Kobayashi</text>
+    </g>
+    <text x="72" y="200" font-size="22" font-weight="500" fill="#000000">Technology Strategy Team · Faber Company</text>
+    <rect x="72" y="218" width="72" height="6" fill="#c5ff21"/>
+    <text x="72" y="280" font-size="14" font-weight="400" fill="#555555">Updated: 2026-05-26 16:37 JST</text>
     <text x="1208" y="56" font-size="22" font-weight="700" fill="#000000" text-anchor="end">Since 01<tspan baseline-shift="super" font-size="0.6em">st</tspan> Feb. 2022</text>
   </g>
 </svg>

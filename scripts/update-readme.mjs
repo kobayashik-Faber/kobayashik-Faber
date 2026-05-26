@@ -114,17 +114,31 @@ function buildBanner({ updatedAt }) {
   const bg = COLORS.white;
   const fg = COLORS.black;
   const muted = '#555555';
-  const accent = COLORS.red;
+  // Personal neon-yellowgreen accent — replaces Faber Red in the banner.
+  const accent = '#c5ff21';
+  const gradLight = '#e3ff75';
+  const gradDark = '#8aaf00';
 
   const stamp = `Updated: ${escapeXml(updatedAt)}`;
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 320" role="img" aria-label="Kota Kobayashi — Faber Company">
+  <defs>
+    <linearGradient id="nameGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="${gradLight}"/>
+      <stop offset="100%" stop-color="${gradDark}"/>
+    </linearGradient>
+  </defs>
   <rect width="1280" height="320" fill="${bg}"/>
   <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif">
-    <text x="72" y="128" font-size="64" font-weight="900" fill="${fg}" letter-spacing="-1">Kota Kobayashi</text>
-    <text x="72" y="172" font-size="22" font-weight="500" fill="${fg}">Technology Strategy Team · Faber Company</text>
-    <rect x="72" y="190" width="72" height="6" fill="${accent}"/>
-    <text x="72" y="260" font-size="14" font-weight="400" fill="${muted}">${stamp}</text>
+    <g font-size="72" font-weight="900" stroke-linejoin="round" stroke-linecap="round">
+      <text x="72" y="132" fill="${accent}" stroke="${accent}" stroke-width="24">Kota Kobayashi</text>
+      <text x="72" y="132" fill="#000000" stroke="#000000" stroke-width="14">Kota Kobayashi</text>
+      <text x="72" y="132" fill="#ffffff" stroke="#ffffff" stroke-width="6">Kota Kobayashi</text>
+      <text x="72" y="132" fill="url(#nameGrad)">Kota Kobayashi</text>
+    </g>
+    <text x="72" y="200" font-size="22" font-weight="500" fill="${fg}">Technology Strategy Team · Faber Company</text>
+    <rect x="72" y="218" width="72" height="6" fill="${accent}"/>
+    <text x="72" y="280" font-size="14" font-weight="400" fill="${muted}">${stamp}</text>
     <text x="1208" y="56" font-size="22" font-weight="700" fill="${fg}" text-anchor="end">${HIRE_DATE_SVG}</text>
   </g>
 </svg>
