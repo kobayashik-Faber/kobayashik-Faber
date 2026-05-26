@@ -2,6 +2,8 @@
   <img src="./assets/banner.svg" alt="Kota Kobayashi — Faber Company">
 </p>
 
+It's rather a habit of mine to keep wondering whether there isn't a better way to solve a problem, particularly when it comes to the way customers experience things on screen. With new tools or approaches, I tend to have a go at running them on my own machine before deciding whether they'd genuinely improve that experience.
+
 ## Recent posts
 
 <!-- BLOG:START -->
