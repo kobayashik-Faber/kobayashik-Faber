@@ -114,15 +114,18 @@ function buildBanner({ updatedAt }) {
   const bg = COLORS.white;
   const fg = COLORS.black;
   const muted = '#555555';
-  const accent = COLORS.red;
+  // Personal neon-yellowgreen accent — replaces Faber Red in the banner.
+  const accent = '#c5ff21';
+  const gradLight = '#e3ff75';
+  const gradDark = '#8aaf00';
 
   const stamp = `Updated: ${escapeXml(updatedAt)}`;
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 320" role="img" aria-label="Kota Kobayashi — Faber Company">
   <defs>
     <linearGradient id="nameGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#ff6573"/>
-      <stop offset="100%" stop-color="#a8000c"/>
+      <stop offset="0%" stop-color="${gradLight}"/>
+      <stop offset="100%" stop-color="${gradDark}"/>
     </linearGradient>
   </defs>
   <rect width="1280" height="320" fill="${bg}"/>
