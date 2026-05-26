@@ -133,9 +133,9 @@ function buildBanner({ updatedAt }) {
       <text x="72" y="132" fill="#ffffff" stroke="#ffffff" stroke-width="6">Kota Kobayashi</text>
       <text x="72" y="132" fill="url(#nameGrad)">Kota Kobayashi</text>
     </g>
-    <text x="72" y="180" font-size="22" font-weight="500" fill="${fg}">Technology Strategy Team · Faber Company</text>
-    <rect x="72" y="198" width="72" height="6" fill="${accent}"/>
-    <text x="72" y="260" font-size="14" font-weight="400" fill="${muted}">${stamp}</text>
+    <text x="72" y="200" font-size="22" font-weight="500" fill="${fg}">Technology Strategy Team · Faber Company</text>
+    <rect x="72" y="218" width="72" height="6" fill="${accent}"/>
+    <text x="72" y="280" font-size="14" font-weight="400" fill="${muted}">${stamp}</text>
     <text x="1208" y="56" font-size="22" font-weight="700" fill="${fg}" text-anchor="end">${HIRE_DATE_SVG}</text>
   </g>
 </svg>

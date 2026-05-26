@@ -13,9 +13,9 @@
       <text x="72" y="132" fill="#ffffff" stroke="#ffffff" stroke-width="6">Kota Kobayashi</text>
       <text x="72" y="132" fill="url(#nameGrad)">Kota Kobayashi</text>
     </g>
-    <text x="72" y="180" font-size="22" font-weight="500" fill="#000000">Technology Strategy Team · Faber Company</text>
-    <rect x="72" y="198" width="72" height="6" fill="#f00012"/>
-    <text x="72" y="260" font-size="14" font-weight="400" fill="#555555">Updated: 2026-05-26 16:22 JST</text>
+    <text x="72" y="200" font-size="22" font-weight="500" fill="#000000">Technology Strategy Team · Faber Company</text>
+    <rect x="72" y="218" width="72" height="6" fill="#f00012"/>
+    <text x="72" y="280" font-size="14" font-weight="400" fill="#555555">Updated: 2026-05-26 16:24 JST</text>
     <text x="1208" y="56" font-size="22" font-weight="700" fill="#000000" text-anchor="end">Since 01<tspan baseline-shift="super" font-size="0.6em">st</tspan> Feb. 2022</text>
   </g>
 </svg>
