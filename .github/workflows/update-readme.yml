@@ -26,9 +26,21 @@ jobs:
       - name: Regenerate README and banners
         run: node scripts/update-readme.mjs
 
+      # Mint a short-lived installation token for the automation GitHub App.
+      # Commits created with this token via the API are signed by GitHub
+      # (Verified) and the App is on the branch ruleset's bypass list, so the
+      # push satisfies both "require signed commits" and "require a PR".
+      - name: Generate GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.README_BOT_APP_ID }}
+          private-key: ${{ secrets.README_BOT_PRIVATE_KEY }}
+
       - name: Commit via GitHub API if changed
         uses: actions/github-script@v7
         with:
+          github-token: ${{ steps.app-token.outputs.token }}
           script: |
             const commit = require('./.github/scripts/commit-verified.cjs');
             await commit({ github, context, core });
