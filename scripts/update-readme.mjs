@@ -22,6 +22,7 @@ const COLORS = {
   black: '#000000',
 };
 
+const NAME = 'Kota Kobayashi';
 const HIRE_DATE_SVG = 'Since 01<tspan baseline-shift="super" font-size="0.6em">st</tspan> Feb. 2022';
 
 async function fetchFeed(url) {
@@ -103,10 +104,25 @@ function escapeXml(s) {
     .replace(/'/g, '&apos;');
 }
 
+// Escape characters that would break Markdown link text: brackets and backslash.
+function escapeMarkdownText(s) {
+  return s.replace(/[\\[\]]/g, '\\$&');
+}
+
+// Parentheses and spaces terminate/break the (url) form; percent-encode them.
+// (encodeURIComponent leaves "(" and ")" unescaped, so map them explicitly.)
+function encodeMarkdownUrl(url) {
+  const map = { '(': '%28', ')': '%29', ' ': '%20' };
+  return url.replace(/[() ]/g, (c) => map[c]);
+}
+
 function buildBlogMarkdown(items) {
   if (items.length === 0) return '_まだ記事がありません．_';
   return items
-    .map((item) => `- ${formatDateJST(new Date(item.published))}　[${item.title}](${item.link})`)
+    .map(
+      (item) =>
+        `- ${formatDateJST(new Date(item.published))}　[${escapeMarkdownText(item.title)}](${encodeMarkdownUrl(item.link)})`,
+    )
     .join('\n');
 }
 
@@ -121,7 +137,7 @@ function buildBanner({ updatedAt }) {
   // Background is intentionally transparent so the SVG inherits the GitHub
   // page background (#ffffff in light, #0d1117 in dark). Plain text colors
   // adapt via internal <style> + prefers-color-scheme.
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 320" role="img" aria-label="Kota Kobayashi — Faber Company">
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 320" role="img" aria-label="${escapeXml(NAME)} — Faber Company">
   <defs>
     <linearGradient id="nameGrad" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="${gradLight}"/>
@@ -138,10 +154,10 @@ function buildBanner({ updatedAt }) {
   </defs>
   <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif">
     <g font-size="72" font-weight="900" stroke-linejoin="round" stroke-linecap="round">
-      <text x="72" y="132" fill="${accent}" stroke="${accent}" stroke-width="24">Kota Kobayashi</text>
-      <text x="72" y="132" fill="#000000" stroke="#000000" stroke-width="14">Kota Kobayashi</text>
-      <text x="72" y="132" fill="#ffffff" stroke="#ffffff" stroke-width="6">Kota Kobayashi</text>
-      <text x="72" y="132" fill="url(#nameGrad)">Kota Kobayashi</text>
+      <text x="72" y="132" fill="${accent}" stroke="${accent}" stroke-width="24">${escapeXml(NAME)}</text>
+      <text x="72" y="132" fill="#000000" stroke="#000000" stroke-width="14">${escapeXml(NAME)}</text>
+      <text x="72" y="132" fill="#ffffff" stroke="#ffffff" stroke-width="6">${escapeXml(NAME)}</text>
+      <text x="72" y="132" fill="url(#nameGrad)">${escapeXml(NAME)}</text>
     </g>
     <text x="72" y="200" class="t-primary" font-size="22" font-weight="500">Technology Strategy Team · Faber Company</text>
     <rect x="72" y="218" width="72" height="6" fill="${accent}"/>
