@@ -26,14 +26,9 @@ jobs:
       - name: Regenerate README and banners
         run: node scripts/update-readme.mjs
 
-      - name: Commit and push if changed
-        run: |
-          if [ -z "$(git status --porcelain README.md assets/banner.svg)" ]; then
-            echo "No changes."
-            exit 0
-          fi
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add README.md assets/banner.svg
-          git commit -m "🤖 Refresh README and banner"
-          git push
+      - name: Commit via GitHub API if changed
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const commit = require('./.github/scripts/commit-verified.cjs');
+            await commit({ github, context, core });
