@@ -7,16 +7,31 @@ const { execSync } = require('child_process');
 
 const MANAGED_FILES = ['README.md', 'assets/banner.svg'];
 
-module.exports = async ({ github, context, core }) => {
-  // Which managed files actually changed?
-  const changed = MANAGED_FILES.filter((f) => {
-    try {
-      execSync(`git diff --quiet -- ${f}`, { stdio: 'ignore' });
-      return false; // no diff
-    } catch {
-      return true; // diff present
+// buildBanner() stamps a minute-resolution "Updated:" timestamp into the banner
+// on every run, so banner.svg always differs even when nothing else changed.
+// Treat a banner whose only change is that timestamp as unchanged, so we don't
+// create a commit for a timestamp bump alone.
+const stripTimestamp = (svg) => svg.replace(/Updated:[^<]*/g, 'Updated:');
+
+// Does this managed file have a change worth committing?
+function hasRealChange(path) {
+  try {
+    execSync(`git diff --quiet -- ${path}`, { stdio: 'ignore' });
+    return false; // no diff at all
+  } catch {
+    // diff present — for the banner, ignore a timestamp-only change
+    if (path === 'assets/banner.svg') {
+      const head = execSync(`git show HEAD:${path}`).toString();
+      const work = fs.readFileSync(path, 'utf8');
+      return stripTimestamp(head) !== stripTimestamp(work);
     }
-  });
+    return true;
+  }
+}
+
+module.exports = async ({ github, context, core }) => {
+  // Which managed files actually changed (ignoring the banner timestamp)?
+  const changed = MANAGED_FILES.filter(hasRealChange);
   if (changed.length === 0) {
     core.info('No changes.');
     return;
